@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TempPlayerMovement : MonoBehaviour {
     private Transform playerT;
+    private Transform camT;
     private float playerMoveSpeed;
 	// Use this for initialization
 	void Start () {
         playerT = GetComponent<Transform>();
+        camT = GameObject.Find("Main Camera").GetComponent<Transform>();
         playerMoveSpeed = 6.7f;
 	}
 	
@@ -30,5 +30,6 @@ public class TempPlayerMovement : MonoBehaviour {
         {
             playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
         }
+        playerT.rotation = camT.rotation;
     }
 }
