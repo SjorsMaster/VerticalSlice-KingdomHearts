@@ -26,6 +26,7 @@ public class TempCameraMovement : MonoBehaviour {
         KeepPlayerInView();
         CameraStayBehindPlayer();
         RotateTowardsLockOn();
+        CheckIfBehindEnemy();
     }
 
     private Vector3 CalculateCenter()
@@ -77,32 +78,47 @@ public class TempCameraMovement : MonoBehaviour {
 
     }
 
-    public void CameraStayBehindPlayer()
+    private void CameraStayBehindPlayer()
     {
         if (ObjectDistanceFromCamEdge(playerTransform).z < camDistanceFromPlayerBack)
         {
             transform.Translate(0, 0, -6 * Time.deltaTime);
-            //transform.position += Vector3.forward * Time.deltaTime;
         }
         if (ObjectDistanceFromCamEdge(playerTransform).z > camDistanceFromPlayerFront)
         {
             transform.Translate(0, 0, 6 * Time.deltaTime);
-            //transform.position += Vector3.back * Time.deltaTime;
 
         }
     }
 
-    public void RotateTowardsLockOn()
+    private void RotateTowardsLockOn()
     {
-        Debug.Log(ObjectDistanceFromCamEdge(enemyTransform));
         if (ObjectDistanceFromCamEdge(enemyTransform).x < 250)
         {
-            transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -1.2f);
+            transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -0.5f * Time.deltaTime * 60);
         }
         if (ObjectDistanceFromCamEdge(enemyTransform).x > 1650)
         {
-            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 1.2f);
+            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 0.5f * Time.deltaTime * 60);
         }
     }
+
+    private void CheckIfBehindEnemy()
+    {
+
+        Vector3 relativePoint = transform.InverseTransformPoint(enemyTransform.position);
+        
+        if (relativePoint.z < 5 && relativePoint.x > 0.0f)
+        {
+            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 2.5f);
+        }
+        else if (relativePoint.z < 5 && relativePoint.x < 0.0f)
+        {
+            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), -2.5f);
+        }
+
+    }
+
+    
 
 }
