@@ -6,13 +6,28 @@ public class ThrowBall : MonoBehaviour {
 
     private float thrust;
 
+
     void Start()
     {
-        thrust = 10f;
+        transform.rotation = GameObject.Find("Enemy").transform.rotation;
+        thrust = 20f;
     }
 
     void FixedUpdate()
     {
         transform.Translate(Vector3.forward * thrust * Time.deltaTime);
+    }
+
+    void ThrowBack()
+    {
+        //schiet de bal richting de lockon
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Ground")
+        {
+            Destroy(this.gameObject, 0f);
+        }
     }
 }
