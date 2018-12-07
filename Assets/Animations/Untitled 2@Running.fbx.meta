@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6a17429d390c38043a0f2fa0d30e16a6
+=======
+guid: 2ae5b194019202f4c8f65dcb9c8e0d5f
+>>>>>>> 711b2b00852161dcb12a6c703714aeb1f22bbd00
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -96,7 +100,11 @@ ModelImporter:
     4300010: Cube
     4300012: Sphere
     4300014: Sphere_1
+<<<<<<< HEAD
     7400000: Running
+=======
+    7400000: mixamo.com
+>>>>>>> 711b2b00852161dcb12a6c703714aeb1f22bbd00
     9500000: //RootNode
     13700000: Capsule
     13700002: Cube
@@ -133,6 +141,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
+<<<<<<< HEAD
     clipAnimations:
     - serializedVersion: 16
       name: Running
@@ -162,6 +171,9 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+=======
+    clipAnimations: []
+>>>>>>> 711b2b00852161dcb12a6c703714aeb1f22bbd00
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -206,7 +218,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+<<<<<<< HEAD
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+=======
+>>>>>>> 711b2b00852161dcb12a6c703714aeb1f22bbd00
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
