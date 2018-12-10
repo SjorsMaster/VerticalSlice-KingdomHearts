@@ -43,11 +43,11 @@ public class TempCameraMovement : MonoBehaviour {
 
     private void KeepPlayerInView()
     {
-        if (ObjectDistanceFromCamEdge(playerTransform).x < 450)
+        if (ObjectDistanceFromCamEdge(playerTransform).x < 550)
         {
             camMove = -6.2f;
         }
-        else if (ObjectDistanceFromCamEdge(playerTransform).x > 1500)
+        else if (ObjectDistanceFromCamEdge(playerTransform).x > 1100)
         {
             camMove = 6.2f;
         }
@@ -76,6 +76,8 @@ public class TempCameraMovement : MonoBehaviour {
         }
         cameraTransform.Translate(camMove * Time.deltaTime, 0, 0);
 
+
+
     }
 
     private void CameraStayBehindPlayer()
@@ -89,17 +91,35 @@ public class TempCameraMovement : MonoBehaviour {
             transform.Translate(0, 0, 6 * Time.deltaTime);
 
         }
+
+        if (ObjectDistanceFromCamEdge(playerTransform).y < 500)
+        {
+            transform.Translate(0, -6 * Time.deltaTime, 0);
+        }
+        if (ObjectDistanceFromCamEdge(playerTransform).y > 550)
+        {
+            transform.Translate(0, 6 * Time.deltaTime, 0);
+        }
+      
     }
 
     private void RotateTowardsLockOn()
     {
+        if (ObjectDistanceFromCamEdge(enemyTransform).x < 850)
+        {
+            transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -30f * Time.deltaTime);
+        }
+        if (ObjectDistanceFromCamEdge(enemyTransform).x > 950)
+        {
+            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 30f * Time.deltaTime);
+        }
         if (ObjectDistanceFromCamEdge(enemyTransform).x < 250)
         {
-            transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -0.5f * Time.deltaTime * 60);
+            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), -30f * Time.deltaTime);
         }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x > 1650)
+        if (ObjectDistanceFromCamEdge(enemyTransform).x > 1500)
         {
-            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 0.5f * Time.deltaTime * 60);
+            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 30f * Time.deltaTime);
         }
     }
 
