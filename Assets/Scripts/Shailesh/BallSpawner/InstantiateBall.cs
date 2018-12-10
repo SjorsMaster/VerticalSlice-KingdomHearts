@@ -8,13 +8,10 @@ public class InstantiateBall : MonoBehaviour
     private GameObject ball;
 
 
-    public void Spawn(float x, float y, float z)
+    public void Spawn(Vector3 Position)
     {
         ball = Resources.Load("Ball(Placeholder)") as GameObject;
-        Instantiate(ball, new Vector3(x, y, z), Quaternion.identity);
+        Instantiate(ball, Position, Quaternion.identity);
     }
 	
-	void Update () {
-		
-	}
 }
