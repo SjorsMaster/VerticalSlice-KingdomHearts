@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a17429d390c38043a0f2fa0d30e16a6
+guid: 6cedec610d436f14d8d6054ba966af2d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -42,9 +42,9 @@ ModelImporter:
     100072: mixamorig:Spine
     100074: mixamorig:Spine1
     100076: mixamorig:Spine2
-    100078: Sphere
-    100080: Sphere_1
-    100082: //RootNode
+    100078: //RootNode
+    100080: Sphere
+    100082: Sphere_1
     400000: Capsule
     400002: Cube
     400004: Cube.1
@@ -84,9 +84,9 @@ ModelImporter:
     400072: mixamorig:Spine
     400074: mixamorig:Spine1
     400076: mixamorig:Spine2
-    400078: Sphere
-    400080: Sphere_1
-    400082: //RootNode
+    400078: //RootNode
+    400080: Sphere
+    400082: Sphere_1
     2100000: No Name
     4300000: Cube.4
     4300002: Cube.3
