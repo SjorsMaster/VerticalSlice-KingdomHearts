@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EnemyController : InstantiateBall
 {
-
+    [SerializeField]
+    private Transform spawnpoint;
     // The target marker.
     public Transform target;
-
+    
     // Angular speed in radians per sec.
     public float speed;
 
@@ -25,7 +26,7 @@ public class EnemyController : InstantiateBall
         GetPlayerPos();
         if (Input.GetKeyDown("o"))
         {
-            Spawn(transform.position);
+            Spawn(spawnpoint.position);
         }
 	}
 

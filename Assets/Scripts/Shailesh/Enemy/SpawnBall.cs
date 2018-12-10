@@ -14,8 +14,4 @@ public class SpawnBall : MonoBehaviour {
         InstantiateBall scriptToAccess = ObjectToAcces.GetComponent<InstantiateBall>();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

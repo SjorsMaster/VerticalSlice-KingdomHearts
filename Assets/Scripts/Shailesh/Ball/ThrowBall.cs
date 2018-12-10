@@ -23,6 +23,11 @@ public class ThrowBall : MonoBehaviour {
         //schiet de bal richting de lockon
     }
 
+    private void Update()
+    {
+        Destroy(this.gameObject, 3f);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Ground")
