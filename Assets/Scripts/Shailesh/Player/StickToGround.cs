@@ -21,14 +21,9 @@ public class StickToGround : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
             Vector3 playerpos = hit.point;
             playerpos.y = playerpos.y + (GetObjectSize(this.gameObject) - distance);
             transform.position = playerpos;
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.white);
         }
 
 

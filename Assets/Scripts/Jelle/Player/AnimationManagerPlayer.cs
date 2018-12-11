@@ -6,9 +6,11 @@ public class AnimationManagerPlayer : MonoBehaviour {
     private Animator playerAnim;
     private readonly string playerRun = "Running";
     private TempPlayerMovement scriptRef;
-	private void Start () {
+    private TempCameraMovement scriptRefCamera;
+    private void Start () {
         playerAnim = GetComponent<Animator>();
         scriptRef = GameObject.Find("Temp_Player").GetComponent<TempPlayerMovement>();
+        scriptRefCamera = GameObject.Find("Main Camera").GetComponent<TempCameraMovement>();
 	}
 	
 	private void Update () {
@@ -23,17 +25,21 @@ public class AnimationManagerPlayer : MonoBehaviour {
 
     private void RotateAnimation()
     {
-        if (scriptRef.facingDirection == scriptRef.faces[0])
+        if (Input.GetKey(KeyCode.A))
         {
+            transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y - 90, 0);
         }
-        else if (scriptRef.facingDirection == scriptRef.faces[1])
+        if (Input.GetKey(KeyCode.D))
         {
+            transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y + 90, 0);
         }
-        else if (scriptRef.facingDirection == scriptRef.faces[2])
+        if (Input.GetKey(KeyCode.W))
         {
+            transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y, 0);
         }
-        else if (scriptRef.facingDirection == scriptRef.faces[3])
+        if (Input.GetKey(KeyCode.S))
         {
+            transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y - 180, 0);
         }
 
     }
