@@ -39,6 +39,14 @@ public class TempPlayerMovement : MonoBehaviour {
             playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
             facingDirection = faces[3];
         }
+<<<<<<< HEAD
            playerT.rotation = camT.rotation;
+=======
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rig.AddForce(new Vector3(0, 50576587234, 0));
+        }
+        playerT.rotation = camT.rotation;
+>>>>>>> ca1fdb4564aec6be8b34e2d14fc217df95c1151e
     }
 }

@@ -97,6 +97,12 @@ ModelImporter:
     4300012: Sphere
     4300014: Sphere_1
     7400000: Running
+<<<<<<< HEAD
+=======
+=======
+    7400000: mixamo.com
+>>>>>>> f8419ceadd31d5d901e9e4a725b5bc771c6b04ab
+>>>>>>> ca1fdb4564aec6be8b34e2d14fc217df95c1151e
     9500000: //RootNode
     13700000: Capsule
     13700002: Cube
@@ -162,6 +168,12 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+<<<<<<< HEAD
+=======
+=======
+    clipAnimations: []
+>>>>>>> f8419ceadd31d5d901e9e4a725b5bc771c6b04ab
+>>>>>>> ca1fdb4564aec6be8b34e2d14fc217df95c1151e
     isReadable: 1
   meshes:
     lODScreenPercentages: []

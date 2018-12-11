@@ -12,11 +12,6 @@ public class SpawnBall : MonoBehaviour {
     {
         ObjectToAcces = GameObject.Find("BallSpawner");
         InstantiateBall scriptToAccess = ObjectToAcces.GetComponent<InstantiateBall>();
-        scriptToAccess.Spawn(0,0,0);
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
