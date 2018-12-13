@@ -656,6 +656,10 @@ GameObject:
   - component: {fileID: 1001610084}
   - component: {fileID: 1001610083}
   - component: {fileID: 1001610082}
+<<<<<<< HEAD:Assets/Scenes/Shailesh2.unity
+=======
+  - component: {fileID: 1001610087}
+>>>>>>> 7cbe083bef7f3f2ce0d4d0025d8f2a34824d8a54:Assets/Scenes/Shailesh.unity
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -675,8 +679,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceToWegren: 5
+<<<<<<< HEAD:Assets/Scenes/Shailesh2.unity
   RaycastEnemy: 3
   RaycastSides: 6
+=======
+  RaycastEnemy: 5
+>>>>>>> 7cbe083bef7f3f2ce0d4d0025d8f2a34824d8a54:Assets/Scenes/Shailesh.unity
   Wegrenspeed: 5
   target: {fileID: 2110459214}
   speed: 5
@@ -741,13 +749,32 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001610081}
   m_LocalRotation: {x: -0, y: 0.29829863, z: -0, w: 0.9544726}
+<<<<<<< HEAD:Assets/Scenes/Shailesh2.unity
   m_LocalPosition: {x: 5.46, y: 38.79, z: 10.59}
+=======
+  m_LocalPosition: {x: 4.68, y: 40.15, z: 9.47}
+>>>>>>> 7cbe083bef7f3f2ce0d4d0025d8f2a34824d8a54:Assets/Scenes/Shailesh.unity
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1271496082}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 34.711002, z: 0}
+<<<<<<< HEAD:Assets/Scenes/Shailesh2.unity
+=======
+--- !u!114 &1001610087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1001610081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e153e1cae6e554f942585099813225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 0
+>>>>>>> 7cbe083bef7f3f2ce0d4d0025d8f2a34824d8a54:Assets/Scenes/Shailesh.unity
 --- !u!1 &1052558517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,6 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e153e1cae6e554f942585099813225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 1
 --- !u!65 &2110459211
 BoxCollider:
   m_ObjectHideFlags: 0
