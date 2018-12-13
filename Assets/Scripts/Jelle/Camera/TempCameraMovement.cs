@@ -109,7 +109,6 @@ public class TempCameraMovement : MonoBehaviour {
     {
         if (ObjectDistanceFromCamEdge(enemyTransform).x < 850)
         {
-<<<<<<< HEAD
             transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -normalCamSpeed * Time.deltaTime);
         }
         if (ObjectDistanceFromCamEdge(enemyTransform).x > 950)
@@ -123,21 +122,6 @@ public class TempCameraMovement : MonoBehaviour {
         if (ObjectDistanceFromCamEdge(enemyTransform).x > 1500)
         {
             transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), fastCamSpeed * Time.deltaTime);
-=======
-            transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -30f * Time.deltaTime);
-        }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x > 950)
-        {
-            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 30f * Time.deltaTime);
-        }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x < 250)
-        {
-            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), -30f * Time.deltaTime);
-        }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x > 1500)
-        {
-            transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), 30f * Time.deltaTime);
->>>>>>> ca1fdb4564aec6be8b34e2d14fc217df95c1151e
         }
     }
 
