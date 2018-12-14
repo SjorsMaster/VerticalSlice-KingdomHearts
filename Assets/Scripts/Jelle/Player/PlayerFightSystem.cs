@@ -10,9 +10,9 @@ public class PlayerFightSystem : MonoBehaviour {
     private readonly string enemyName = "Temp_Opponent";
     private readonly string childObjectName = "AnimationP";
     private readonly float maxDistanceLeap = 6.5f;
-    private readonly float minDistanceLeap = 2.1f;
+    private readonly float minDistanceLeap = 1.5f;
     private float attackTimer;
-    private readonly float cooldownAttack = 0.5f;
+    private readonly float cooldownAttack = 0.3f;
     public bool attackActive = false;
     private float attackTrueTimer;
     [SerializeField]
@@ -26,7 +26,6 @@ public class PlayerFightSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(attackActive);
         float dist = Vector3.Distance(enemy.transform.position, transform.position);
         attackTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer > cooldownAttack && dist < maxDistanceLeap && dist > minDistanceLeap)
@@ -40,17 +39,15 @@ public class PlayerFightSystem : MonoBehaviour {
             attackTimer = 0;
             
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-        }
+       
         
-        if (attackActive && attackTrueTimer < 0.2f)
+        if (attackActive && attackTrueTimer < 0.3f)
         {
+            Debug.Log(attackTimer);
             attackTrueTimer += Time.deltaTime;
             transform.Translate(0, 0, leapDistance * Time.deltaTime);
             childObjectAnim.transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y, 0);
-            if (attackTrueTimer > 0.15f)
+            if (attackTrueTimer > 0.25f)
             {
                 attackActive = false;
                 attackTrueTimer = 0;

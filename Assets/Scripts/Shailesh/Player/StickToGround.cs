@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class StickToGround : MonoBehaviour
 {
-
-    private float distance;
-
-	// Use this for initialization
-	void Start () {
-        distance = 1.4f;
-	}
+    [SerializeField]
+    private float distance = 3;
 
     // Update is called once per frame
     void Update()

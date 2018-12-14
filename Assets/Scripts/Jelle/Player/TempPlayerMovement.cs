@@ -20,21 +20,41 @@ public class TempPlayerMovement : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.W))
             {
-                playerT.Translate(0, 0, playerMoveSpeed * Time.deltaTime);
+                movePlayer(1);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                playerT.Translate(0, 0, -playerMoveSpeed * Time.deltaTime);
+                movePlayer(2);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                playerT.Translate(playerMoveSpeed * Time.deltaTime, 0, 0);
+                movePlayer(3);
             }
             if (Input.GetKey(KeyCode.A))
             {
-                playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
+                movePlayer(4);
             }
             playerT.rotation = camT.rotation;
+        }
+    }
+
+    public void movePlayer(int directionInt)
+    {
+        if (directionInt == 1)
+        {
+            playerT.Translate(0, 0, playerMoveSpeed * Time.deltaTime);
+        }
+        if (directionInt == 2)
+        {
+            playerT.Translate(0, 0, -playerMoveSpeed * Time.deltaTime);
+        }
+        if (directionInt == 3)
+        {
+            playerT.Translate(playerMoveSpeed * Time.deltaTime, 0, 0);
+        }
+        if (directionInt == 4)
+        {
+            playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
         }
     }
 }
