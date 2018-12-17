@@ -6,44 +6,61 @@ public class EnemyController : InstantiateBall
 {
     [SerializeField]
     private float DistanceToWegren, RaycastEnemy, RaycastSides;
-    public float Wegrenspeed;
-    private Transform spawnpoint;
+    public float Wegrenspeed, timer = 0, throwballtimer = 0;
+    [SerializeField]
+    int state = 0, actionState = 2, lastState;
+    bool throwBal = false;
+
     // The target marker.
     public Transform target;
     
     // Angular speed in radians per sec.
     public float speed;
 
-    //Vector3 playerPos;
-    //GameObject player;
 
-	
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
     {
 
-        Debug.DrawRay(transform.position, transform.TransformDirection(new Vector3(1, 0, 1)) * RaycastSides, Color.yellow);
+        if(actionState == 1)
+        {
+            RunAway();
+        }
+        if(actionState == 2)
+        {
+            Attack();
+            RotateTowardsPlayer();
+        }
+
+
+        timer += Time.deltaTime;
+
+        if(timer > 3)
+        {
+            int randomNumber = Random.Range(1, 3);
+            timer = 0;
+            state = 0;
+            lastState = randomNumber;
+            ChooseRandomAction(randomNumber);
+            if(randomNumber == 1)
+            {
+                transform.localRotation *= Quaternion.Euler(180, 0, 0);
+            }
+        }
+
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * RaycastEnemy, Color.yellow);
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * RaycastEnemy, Color.yellow);
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * RaycastEnemy, Color.yellow);
 
-
-        if (getDistanceFromPlayer() < DistanceToWegren)
-        {
-            RunAway(); 
-        }
-        //CheckDistanceFromPlayer();
-        RotateTowardsPlayer();
-        if (Input.GetKeyDown("o"))
-        {
-            Spawn(spawnpoint.position);
-        }
     }
 
-    void CheckDistanceFromPlayer()
+    void ChooseRandomAction(int number)
     {
-       
+
+        actionState = number;
+
     }
+
 
 
     public float getDistanceFromPlayer()
@@ -63,48 +80,40 @@ public class EnemyController : InstantiateBall
 
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, RaycastEnemy, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, RaycastEnemy, layerMask))
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
             {
+                //state = 1;
                 transform.Translate(Vector3.right * Wegrenspeed * Time.deltaTime);
             }
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, RaycastEnemy, layerMask))
             {
+                //state = 2;
                 transform.Translate(Vector3.left * Wegrenspeed * Time.deltaTime);
             }
             if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
             {
+                //state = 3;
                 transform.Translate(Vector3.left * Wegrenspeed * Time.deltaTime);
             }
             if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
             {
+                //state = 4;
                 transform.Translate(Vector3.right * Wegrenspeed * Time.deltaTime);
             }
             if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, RaycastEnemy, layerMask))
             {
+                //state = 5;
                 transform.Translate(Vector3.right * Wegrenspeed * Time.deltaTime);
             }
         }
-        else if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, RaycastEnemy, layerMask))
+        else if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, RaycastEnemy, layerMask))
         {
-            transform.Translate(Vector3.back * Wegrenspeed * Time.deltaTime);
-        }
-
-
-        /*if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastSides, layerMask))
-        {
-            Debug.Log("Did Hit left");
-            transform.Translate(Vector3.left * Wegrenspeed * Time.deltaTime);
-        }
-
-
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * RaycastEnemy, Color.blue);
             transform.Translate(Vector3.forward * Wegrenspeed * Time.deltaTime);
+            //state = 6;
         }
-        */
+
     }
 
     void Hit()
@@ -115,7 +124,17 @@ public class EnemyController : InstantiateBall
     void Attack()
     {
 
+        throwballtimer += Time.deltaTime;
+
+        if(throwballtimer > 1)
+        {
+            Spawn(GameObject.Find("BallSpawner").transform.position);
+            throwballtimer = 0;
+            actionState = 0;
+        }
     }
+
+
 
     void RotateTowardsPlayer()
     {
@@ -130,12 +149,7 @@ public class EnemyController : InstantiateBall
 
         // Move our position a step closer to the target.
         transform.rotation = Quaternion.LookRotation(newDir);
+
+        //Invoke("RotateTowardsPlayer", 3f);
     }
-
-    void Move()
-    {
-
-    }
-
-
 }
