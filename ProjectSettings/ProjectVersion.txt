@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 m_EditorVersion: 2018.2.19f1
+=======
+<<<<<<< HEAD
+m_EditorVersion: 2018.2.8f1
+=======
+<<<<<<< HEAD
+m_EditorVersion: 2018.2.12f1
+=======
+m_EditorVersion: 2018.2.15f1
+>>>>>>> 711b2b00852161dcb12a6c703714aeb1f22bbd00
+>>>>>>> ababaf5d5560fac57e145ff7f1c420b241010ea1
+>>>>>>> 324847e9b75ac6d86787c31d0279ee6f8a457ea7
