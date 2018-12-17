@@ -678,6 +678,11 @@ MonoBehaviour:
   RaycastEnemy: 3
   RaycastSides: 6
   Wegrenspeed: 5
+  timer: 0
+  throwballtimer: 0
+  state: 0
+  actionState: 2
+  lastState: 0
   target: {fileID: 2110459214}
   speed: 5
 --- !u!65 &1001610083
@@ -740,14 +745,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001610081}
-  m_LocalRotation: {x: -0, y: 0.29829863, z: -0, w: 0.9544726}
+  m_LocalRotation: {x: -0, y: -0.97049856, z: -0, w: 0.24110702}
   m_LocalPosition: {x: 5.46, y: 38.79, z: 10.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1271496082}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 34.711002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -152.09601, z: 0}
 --- !u!1 &1052558517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2110459209}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.63, y: 39.31, z: 3}
+  m_LocalPosition: {x: 5.02, y: 39.31, z: 6.87}
   m_LocalScale: {x: 1, y: 2.3772, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
