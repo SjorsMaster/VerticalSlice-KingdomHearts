@@ -9,7 +9,7 @@ public class ThrowBall : MonoBehaviour {
 
     void Start()
     {
-        transform.rotation = GameObject.Find("Enemy").transform.rotation;
+        transform.rotation = GameObject.Find("Temp_Opponent").transform.rotation;
         thrust = 20f;
     }
 

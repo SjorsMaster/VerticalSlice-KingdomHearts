@@ -7,7 +7,7 @@ public class TempCameraMovement : MonoBehaviour {
     private Transform enemyTransform;
     private Transform cameraTransform;
     [SerializeField]
-    private string playerName = "Temp_Player", 
+    private readonly string playerName = "Temp_Player", 
                    enemyName = "Temp_Opponent";
     private Camera cam;
     private float camMove;
@@ -17,12 +17,14 @@ public class TempCameraMovement : MonoBehaviour {
     private float camDistanceFromPlayerFront = 7.4f;
     private float normalCamSpeed = 60;
     private float fastCamSpeed = 90;
-	void Start () {
+    private readonly float currentResX = Screen.width;
+    private readonly float currentResY = Screen.height;
+    void Start () {
         playerTransform = GameObject.Find(playerName).GetComponent<Transform>();
         enemyTransform = GameObject.Find(enemyName).GetComponent<Transform>();
         cameraTransform = GetComponent<Transform>();
-        cam = GetComponent<Camera>();
-	}
+        cam = GetComponent<Camera>();        
+    }
 	
 	void Update () {
         KeepPlayerInView();
@@ -45,17 +47,17 @@ public class TempCameraMovement : MonoBehaviour {
 
     private void KeepPlayerInView()
     {
-        if (ObjectDistanceFromCamEdge(playerTransform).x < 550)
+        if (ObjectDistanceFromCamEdge(playerTransform).x < currentResX / 3.49f)
         {
             camMove = -6.2f;
         }
-        else if (ObjectDistanceFromCamEdge(playerTransform).x > 1100)
+        else if (ObjectDistanceFromCamEdge(playerTransform).x > currentResX / 1.745f)
         {
             camMove = 6.2f;
         }
         else
         {
-            if (ObjectDistanceFromCamEdge(playerTransform).x > 950 && ObjectDistanceFromCamEdge(playerTransform).x < 970)
+            if (ObjectDistanceFromCamEdge(playerTransform).x > currentResX / 2.02f && ObjectDistanceFromCamEdge(playerTransform).x < currentResX / 1.97f)
             {
                 isCentered = true;
             }
@@ -63,11 +65,11 @@ public class TempCameraMovement : MonoBehaviour {
             {
                 isCentered = false;
             }
-            if (ObjectDistanceFromCamEdge(playerTransform).x > 450 && ObjectDistanceFromCamEdge(playerTransform).x < 960 && !isCentered)
+            if (ObjectDistanceFromCamEdge(playerTransform).x > currentResX / 4.26f && ObjectDistanceFromCamEdge(playerTransform).x < currentResX / 2 && !isCentered)
             {
                 camMove = -3.2f;
             }
-            else if (ObjectDistanceFromCamEdge(playerTransform).x < 1500 && ObjectDistanceFromCamEdge(playerTransform).x > 960 && !isCentered)
+            else if (ObjectDistanceFromCamEdge(playerTransform).x < currentResX / 1.28f && ObjectDistanceFromCamEdge(playerTransform).x > currentResX / 2 && !isCentered)
             {
                 camMove = 3.2f;
             }
@@ -94,11 +96,11 @@ public class TempCameraMovement : MonoBehaviour {
 
         }
 
-        if (ObjectDistanceFromCamEdge(playerTransform).y < 500)
+        if (ObjectDistanceFromCamEdge(playerTransform).y < currentResY / 3.50f)
         {
             transform.Translate(0, -6 * Time.deltaTime, 0);
         }
-        if (ObjectDistanceFromCamEdge(playerTransform).y > 550)
+        if (ObjectDistanceFromCamEdge(playerTransform).y > currentResY / 3.08f)
         {
             transform.Translate(0, 6 * Time.deltaTime, 0);
         }
@@ -107,19 +109,19 @@ public class TempCameraMovement : MonoBehaviour {
 
     private void RotateTowardsLockOn()
     {
-        if (ObjectDistanceFromCamEdge(enemyTransform).x < 850)
+        if (ObjectDistanceFromCamEdge(enemyTransform).x < currentResX / 2.26f)
         {
             transform.RotateAround(CalculateCenter(), new Vector3(0,1,0), -normalCamSpeed * Time.deltaTime);
         }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x > 950)
+        if (ObjectDistanceFromCamEdge(enemyTransform).x > currentResX / 2.02f)
         {
             transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), normalCamSpeed * Time.deltaTime);
         }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x < 250)
+        if (ObjectDistanceFromCamEdge(enemyTransform).x < currentResX / 7.68f)
         {
             transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), -fastCamSpeed* Time.deltaTime);
         }
-        if (ObjectDistanceFromCamEdge(enemyTransform).x > 1500)
+        if (ObjectDistanceFromCamEdge(enemyTransform).x > currentResX / 1.28f)
         {
             transform.RotateAround(CalculateCenter(), new Vector3(0, 1, 0), fastCamSpeed * Time.deltaTime);
         }

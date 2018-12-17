@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 7f8a5e17d41b0cb43a9216405580e2ea
-=======
-guid: 491bbc8d5278e33478fff1a35ae29c22
->>>>>>> 324847e9b75ac6d86787c31d0279ee6f8a457ea7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -137,39 +133,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-<<<<<<< HEAD
     clipAnimations: []
-=======
-    clipAnimations:
-    - serializedVersion: 16
-      name: mixamo.com
-      takeName: mixamo.com
-      firstFrame: 0
-      lastFrame: 33
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
->>>>>>> 324847e9b75ac6d86787c31d0279ee6f8a457ea7
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -214,10 +178,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-<<<<<<< HEAD
-=======
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
->>>>>>> 324847e9b75ac6d86787c31d0279ee6f8a457ea7
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

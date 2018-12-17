@@ -17,48 +17,49 @@ public class EnemyController : InstantiateBall
     // Angular speed in radians per sec.
     public float speed;
 
-
     // Update is called once per frame
     void Update ()
     {
-
-        if(actionState == 1)
+        if(actionState == 1 || actionState == 2 || actionState == 3)
         {
             RunAway();
         }
-        if(actionState == 2)
+        if(actionState == 0)
         {
             Attack();
             RotateTowardsPlayer();
         }
-
-
         timer += Time.deltaTime;
-
         if(timer > 3)
         {
-            int randomNumber = Random.Range(1, 3);
-            timer = 0;
-            state = 0;
-            lastState = randomNumber;
-            ChooseRandomAction(randomNumber);
-            if(randomNumber == 1)
+            int randomNumber = Random.Range(0,3);// 0\4 = idle, 2 = attack, 1/3/5 = walk;
+            Debug.Log("Random Number:" + randomNumber);
+            if(randomNumber != lastState)
             {
-                transform.localRotation *= Quaternion.Euler(180, 0, 0);
+                lastState = randomNumber;
+                Debug.Log("New last state:" + lastState);
+                timer = 0;
+                ChooseRandomAction(randomNumber);
+                if (randomNumber == 1)
+                {
+                    transform.localRotation *= Quaternion.Euler(0, 180, 0);
+                }
             }
-        }
+            else
+            {
+                Debug.Log("Last state(" + lastState + ") Already is ("+ randomNumber+")");
+                timer = 3;
+            }
 
+        }
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * RaycastEnemy, Color.yellow);
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * RaycastEnemy, Color.yellow);
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * RaycastEnemy, Color.yellow);
-
     }
 
     void ChooseRandomAction(int number)
     {
-
         actionState = number;
-
     }
 
 
@@ -84,34 +85,28 @@ public class EnemyController : InstantiateBall
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
             {
-                //state = 1;
                 transform.Translate(Vector3.right * Wegrenspeed * Time.deltaTime);
             }
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, RaycastEnemy, layerMask))
             {
-                //state = 2;
                 transform.Translate(Vector3.left * Wegrenspeed * Time.deltaTime);
             }
             if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
             {
-                //state = 3;
                 transform.Translate(Vector3.left * Wegrenspeed * Time.deltaTime);
             }
             if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
             {
-                //state = 4;
                 transform.Translate(Vector3.right * Wegrenspeed * Time.deltaTime);
             }
             if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, RaycastEnemy, layerMask))
             {
-                //state = 5;
                 transform.Translate(Vector3.right * Wegrenspeed * Time.deltaTime);
             }
         }
         else if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, RaycastEnemy, layerMask))
         {
             transform.Translate(Vector3.forward * Wegrenspeed * Time.deltaTime);
-            //state = 6;
         }
 
     }
@@ -130,7 +125,8 @@ public class EnemyController : InstantiateBall
         {
             Spawn(GameObject.Find("BallSpawner").transform.position);
             throwballtimer = 0;
-            actionState = 0;
+            actionState = 5;
+            timer = 0;
         }
     }
 
