@@ -14,22 +14,24 @@ public class PlayerFightSystem : MonoBehaviour {
     private float attackTimer;
     private readonly float cooldownAttack = 0.3f;
     public bool attackActive = false;
+    public bool attackActiveDist = false;
     private float attackTrueTimer;
     [SerializeField]
-    private readonly float leapDistance = 8;
+    private readonly float leapDistance = 6;
     // Use this for initialization
     void Start () {
         enemy = GameObject.Find(enemyName);
         childObjectAnim = GameObject.Find(childObjectName);
         scriptRefCamera = GameObject.Find("Main Camera").GetComponent<TempCameraMovement>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         float dist = Vector3.Distance(enemy.transform.position, transform.position);
         attackTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer > cooldownAttack && dist < maxDistanceLeap && dist > minDistanceLeap)
         {
+
             attackActive = true;
             attackTimer = 0;
         }
@@ -37,22 +39,37 @@ public class PlayerFightSystem : MonoBehaviour {
         {
             Debug.Log("Attack");
             attackTimer = 0;
-            
+            attackActiveDist = true;
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.Translate(0, 0, leapDistance * Time.deltaTime);
+        } 
        
         
-        if (attackActive && attackTrueTimer < 0.3f)
+        if (attackActive)
         {
-            Debug.Log(attackTimer);
             attackTrueTimer += Time.deltaTime;
+            childObjectAnim.transform.localEulerAngles = new Vector3(0, 0, 0);
+            transform.LookAt(enemy.transform);
+            transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
             transform.Translate(0, 0, leapDistance * Time.deltaTime);
-            childObjectAnim.transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y, 0);
-            if (attackTrueTimer > 0.25f)
+            if (attackTrueTimer > 0.3f)
             {
                 attackActive = false;
                 attackTrueTimer = 0;
             }
         }
+        else if (attackActiveDist)
+        {
+            childObjectAnim.transform.localEulerAngles = new Vector3(0, scriptRefCamera.transform.rotation.y, 0);
+            attackTrueTimer += Time.deltaTime;
+            if (attackTrueTimer > 0.3f)
+            {
+                attackActiveDist = false;
+                attackTrueTimer = 0;
+            }
+        } 
 
     }
 }

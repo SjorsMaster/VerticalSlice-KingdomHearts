@@ -34,7 +34,9 @@ public class TempPlayerMovement : MonoBehaviour {
             {
                 movePlayer(4);
             }
-            playerT.rotation = camT.rotation;
+            if (!scriptRefFight.attackActive || !scriptRefFight.attackActiveDist) {
+                playerT.rotation = camT.rotation;
+            }
         }
     }
 
