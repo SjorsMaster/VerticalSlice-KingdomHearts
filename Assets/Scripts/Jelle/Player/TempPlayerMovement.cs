@@ -3,6 +3,7 @@
 public class TempPlayerMovement : MonoBehaviour {
     private Transform playerT;
     private Transform camT;
+    private Vector3 oldpos;
     private float playerMoveSpeed;
     private PlayerFightSystem scriptRefFight;
 	// Use this for initialization
@@ -42,21 +43,30 @@ public class TempPlayerMovement : MonoBehaviour {
 
     public void movePlayer(int directionInt)
     {
-        if (directionInt == 1)
+        if((playerT.transform.position.z > -60 && playerT.transform.position.z < -37) && (playerT.transform.position.x > 40 && playerT.transform.position.x < 60))
         {
-            playerT.Translate(0, 0, playerMoveSpeed * Time.deltaTime);
+            oldpos = playerT.position;
+            if (directionInt == 1)
+            {
+                playerT.Translate(0, 0, playerMoveSpeed * Time.deltaTime);
+            }
+            if (directionInt == 2)
+            {
+                playerT.Translate(0, 0, -playerMoveSpeed * Time.deltaTime);
+            }
+            if (directionInt == 3)
+            {
+                playerT.Translate(playerMoveSpeed * Time.deltaTime, 0, 0);
+            }
+            if (directionInt == 4)
+            {
+                playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
+            }
         }
-        if (directionInt == 2)
+        else
         {
-            playerT.Translate(0, 0, -playerMoveSpeed * Time.deltaTime);
+            playerT.position = oldpos;
         }
-        if (directionInt == 3)
-        {
-            playerT.Translate(playerMoveSpeed * Time.deltaTime, 0, 0);
-        }
-        if (directionInt == 4)
-        {
-            playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
-        }
+        
     }
 }
