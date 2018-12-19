@@ -10,7 +10,7 @@ public class LockOnImage : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         scriptRef = GameObject.Find("Main Camera").GetComponent<TempCameraMovement>();
-        enemyTransform = GameObject.Find("Temp_Opponent").GetComponent<Transform>();
+        enemyTransform = GameObject.Find("bovenlichaam").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
