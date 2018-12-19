@@ -4,23 +4,41 @@ using UnityEngine;
 
 public class ThrowBall : MonoBehaviour {
 
-    private float thrust;
-
+    float thrust, speed = 20;
+    bool goTo = false;
+    Transform target;
+    Rigidbody rigB;
+    GameObject enemy;
 
     void Start()
     {
         transform.rotation = GameObject.Find("Temp_Opponent").transform.rotation;
         thrust = 20f;
+        rigB = GetComponent<Rigidbody>();
+        enemy = GameObject.Find("bovenlichaam");
     }
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * thrust * Time.deltaTime);
+        if (!goTo)
+        {
+            transform.Translate(Vector3.forward * thrust * Time.deltaTime);
+        }
+
+        
+        if (goTo == true)
+        {
+            rigB.isKinematic = true;
+            transform.LookAt(enemy.transform);
+            transform.Translate(0,0,speed * Time.deltaTime);
+            Debug.Log("GoBack");
+        }
     }
 
-    void ThrowBack()
+    public void ThrowBack()
     {
-        //schiet de bal richting de lockon
+        target = GameObject.Find("Ball(Placeholder)(Clone)").transform;
+        goTo = true;
     }
 
     private void Update()
@@ -30,7 +48,7 @@ public class ThrowBall : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Ground")
+        if(collision.gameObject.name == "Ground" || collision.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject, 0f);
         }

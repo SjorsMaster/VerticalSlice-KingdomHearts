@@ -1,22 +1,23 @@
-﻿using UnityEngine;
+﻿
+
+
+using UnityEngine;
 
 public class TempPlayerMovement : MonoBehaviour {
-    private Transform playerT;
-    private Transform camT;
-    private Vector3 oldpos;
-    private float playerMoveSpeed;
-    private PlayerFightSystem scriptRefFight;
-	// Use this for initialization
+    Transform playerT,
+              camT;
+    Vector3 oldpos;
+    float playerMoveSpeed;
+    PlayerFightSystem scriptRefFight;
+
 	void Start () {
         playerT = GetComponent<Transform>();
         camT = GameObject.Find("Main Camera").GetComponent<Transform>();
         scriptRefFight = GetComponent<PlayerFightSystem>();
         playerMoveSpeed = 6.7f;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        //Input
         if (!scriptRefFight.attackActive)
         {
             if (Input.GetKey(KeyCode.W))

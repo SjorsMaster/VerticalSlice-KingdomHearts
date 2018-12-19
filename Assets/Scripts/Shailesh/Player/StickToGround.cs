@@ -5,9 +5,8 @@ using UnityEngine;
 public class StickToGround : MonoBehaviour
 {
     [SerializeField]
-    private float distance = 3;
-
-    // Update is called once per frame
+    float distance = 3;
+    
     void Update()
     {
         // Bit shift the index of the layer (8) to get a bit mask

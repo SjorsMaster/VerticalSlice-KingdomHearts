@@ -5,19 +5,24 @@ using UnityEngine;
 public class EnemyController : InstantiateBall
 {
     [SerializeField]
-    private float DistanceToWegren, RaycastEnemy, RaycastSides;
-    public float Wegrenspeed, timer = 0, throwballtimer = 0;
-    [SerializeField]
-    int state = 0, actionState = 2, lastState;
-    bool throwBal = false;
-
-    // The target marker.
-    public Transform target;
+    float DistanceToWegren, 
+          RaycastEnemy, 
+          RaycastSides, 
+          Wegrenspeed, 
+          timer = 0, 
+          throwballtimer = 0,
+          speed;
     
-    // Angular speed in radians per sec.
-    public float speed;
+    [SerializeField]
+    int state = 0, 
+        actionState = 2, 
+        lastState;
 
-    // Update is called once per frame
+    bool throwBal = false;
+    
+    [SerializeField]
+    Transform target;
+
     void Update ()
     {
         if(actionState == 1 || actionState == 2 || actionState == 3)
@@ -33,11 +38,9 @@ public class EnemyController : InstantiateBall
         if(timer > 3)
         {
             int randomNumber = Random.Range(0,3);// 0\4 = idle, 2 = attack, 1/3/5 = walk;
-            Debug.Log("Random Number:" + randomNumber);
             if(randomNumber != lastState)
             {
                 lastState = randomNumber;
-                Debug.Log("New last state:" + lastState);
                 timer = 0;
                 ChooseRandomAction(randomNumber);
                 if (randomNumber == 1)
@@ -47,14 +50,10 @@ public class EnemyController : InstantiateBall
             }
             else
             {
-                Debug.Log("Last state(" + lastState + ") Already is ("+ randomNumber+")");
                 timer = 3;
             }
 
         }
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * RaycastEnemy, Color.yellow);
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back) * RaycastEnemy, Color.yellow);
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * RaycastEnemy, Color.yellow);
     }
 
     void ChooseRandomAction(int number)
@@ -72,15 +71,10 @@ public class EnemyController : InstantiateBall
 
     void RunAway()
     {
-        //raycast om te zien welke weg vrij is.
         int layerMask = 1 << 8;
-
-        // This would cast rays only against colliders in layer 8.
-        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
 
         RaycastHit hit;
-        // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, RaycastEnemy, layerMask))
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, RaycastEnemy, layerMask))
@@ -114,6 +108,7 @@ public class EnemyController : InstantiateBall
     void Hit()
     {
 
+        //play hit animation!
     }
 
     void Attack()
@@ -135,17 +130,12 @@ public class EnemyController : InstantiateBall
     void RotateTowardsPlayer()
     {
         Vector3 targetDir = target.position - transform.position;
-
-        // The step size is equal to speed times frame time.
         float step = speed * Time.deltaTime;
 
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
         newDir.y = 0;
         Debug.DrawRay(transform.position, newDir, Color.red);
 
-        // Move our position a step closer to the target.
         transform.rotation = Quaternion.LookRotation(newDir);
-
-        //Invoke("RotateTowardsPlayer", 3f);
     }
 }

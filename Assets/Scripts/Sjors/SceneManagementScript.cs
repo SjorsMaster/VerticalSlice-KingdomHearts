@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneManagementScript : MonoBehaviour {
-    bool Go;
-    bool InOrOut;
-    string tempScene;
-    string OldScene;
+    bool Go,
+         InOrOut;
+    string tempScene,
+           OldScene;
 
     public void FadeToStage(string sceneName)
     {

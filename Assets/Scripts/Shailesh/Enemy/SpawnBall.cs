@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class SpawnBall : MonoBehaviour {
 
-    private GameObject ObjectToAcces;
+    GameObject ObjectToAcces;
 
-
-    // Use this for initialization
     void Start ()
     {
         ObjectToAcces = GameObject.Find("BallSpawner");

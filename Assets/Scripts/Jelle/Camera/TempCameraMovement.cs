@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TempCameraMovement : MonoBehaviour {
-    private Transform playerTransform;
-    private Transform enemyTransform;
-    private Transform cameraTransform;
+    Transform playerTransform,
+              enemyTransform,
+              cameraTransform;
+
     [SerializeField]
-    private readonly string playerName = "Temp_Player", 
-                   enemyName = "Temp_Opponent";
-    private Camera cam;
-    private float camMove;
-    private bool isCentered = true;
+    string playerName = "Temp_Player", 
+           enemyName = "Temp_Opponent";
+
+    Camera cam;
+    bool isCentered = true;
+
     [SerializeField]
-    private float camDistanceFromPlayerBack = 5.6f;
-    private float camDistanceFromPlayerFront = 7.4f;
-    private float normalCamSpeed = 60;
-    private float fastCamSpeed = 90;
-    private readonly float currentResX = Screen.width;
-    private readonly float currentResY = Screen.height;
+    float camDistanceFromPlayerBack = 5.6f,
+          camDistanceFromPlayerFront = 7.4f,
+          normalCamSpeed = 60,
+          fastCamSpeed = 90,
+          currentResX = Screen.width,
+          currentResY = Screen.height,
+          camMove;
+
     void Start () {
         playerTransform = GameObject.Find(playerName).GetComponent<Transform>();
         enemyTransform = GameObject.Find(enemyName).GetComponent<Transform>();

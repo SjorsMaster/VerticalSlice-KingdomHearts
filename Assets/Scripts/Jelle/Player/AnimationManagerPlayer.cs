@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationManagerPlayer : MonoBehaviour {
-    private Animator playerAnim;
-    private readonly string playerRun = "Running";
-    private TempPlayerMovement scriptRef;
-    private TempCameraMovement scriptRefCamera;
-    private PlayerFightSystem scriptRefFight;
+    Animator playerAnim;
+    string playerRun = "Running";
+    TempPlayerMovement scriptRef;
+    TempCameraMovement scriptRefCamera;
+    PlayerFightSystem scriptRefFight;
+
     private void Start () {
         playerAnim = GetComponent<Animator>();
         scriptRef = GameObject.Find("Temp_Player").GetComponent<TempPlayerMovement>();
