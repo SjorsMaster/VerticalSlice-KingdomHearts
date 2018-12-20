@@ -38,13 +38,17 @@ public class TempPlayerMovement : MonoBehaviour {
             {
                 movePlayer(4);
             }
+            if (Input.GetKey(KeyCode.K))
+            {
+                anim.SetTrigger("kys");
+            }
+            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+            {
+                anim.SetBool("run", false);
+            }
             if (!scriptRefFight.attackActive || !scriptRefFight.attackActiveDist) {
                 playerT.rotation = camT.rotation;
             }
-        }
-        else //los me op sjors :)
-        {
-            anim.SetBool("run", false);
         }
     }
 

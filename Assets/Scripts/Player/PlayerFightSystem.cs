@@ -7,6 +7,8 @@ public class PlayerFightSystem : MonoBehaviour {
                childObjectAnim,
                ballObject;
 
+    Animator anim;
+
     TempCameraMovement scriptRefCamera;
 	ThrowBall ballScriptRef;
 
@@ -26,7 +28,9 @@ public class PlayerFightSystem : MonoBehaviour {
 
 	bool hitBall = false;
 
-    void Start () {
+    void Start ()
+    {
+        anim = GetComponent<Animator>();
         enemy = GameObject.Find(enemyName);
         childObjectAnim = GameObject.Find(childObjectName);
         scriptRefCamera = GameObject.Find("Main Camera").GetComponent<TempCameraMovement>();
@@ -52,7 +56,7 @@ public class PlayerFightSystem : MonoBehaviour {
         attackTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space) && attackTimer > cooldownAttack && dist < maxDistanceLeap && dist > minDistanceLeap)
         {
-
+            anim.SetTrigger("attack");
             attackActive = true;
             attackTimer = 0;
 			if (hitBall) {
@@ -62,6 +66,7 @@ public class PlayerFightSystem : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Space) && attackTimer > cooldownAttack && dist < maxDistanceLeap)
         {
+            anim.SetTrigger("attack");
             Debug.Log("Attack");
             attackTimer = 0;
             attackActiveDist = true;
