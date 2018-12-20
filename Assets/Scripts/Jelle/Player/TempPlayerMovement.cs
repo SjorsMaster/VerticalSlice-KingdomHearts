@@ -9,8 +9,10 @@ public class TempPlayerMovement : MonoBehaviour {
     Vector3 oldpos;
     float playerMoveSpeed;
     PlayerFightSystem scriptRefFight;
+    Animator anim;
 
 	void Start () {
+        anim = GetComponent<Animator>(); 
         playerT = GetComponent<Transform>();
         camT = GameObject.Find("Main Camera").GetComponent<Transform>();
         scriptRefFight = GetComponent<PlayerFightSystem>();
@@ -40,6 +42,10 @@ public class TempPlayerMovement : MonoBehaviour {
                 playerT.rotation = camT.rotation;
             }
         }
+        else //los me op sjors :)
+        {
+            anim.SetBool("run", false);
+        }
     }
 
     public void movePlayer(int directionInt)
@@ -50,18 +56,22 @@ public class TempPlayerMovement : MonoBehaviour {
             if (directionInt == 1)
             {
                 playerT.Translate(0, 0, playerMoveSpeed * Time.deltaTime);
+                MoveMeBabehhh();
             }
             if (directionInt == 2)
             {
                 playerT.Translate(0, 0, -playerMoveSpeed * Time.deltaTime);
+                MoveMeBabehhh();
             }
             if (directionInt == 3)
             {
                 playerT.Translate(playerMoveSpeed * Time.deltaTime, 0, 0);
+                MoveMeBabehhh();
             }
             if (directionInt == 4)
             {
                 playerT.Translate(-playerMoveSpeed * Time.deltaTime, 0, 0);
+                MoveMeBabehhh();
             }
         }
         else
@@ -69,5 +79,10 @@ public class TempPlayerMovement : MonoBehaviour {
             playerT.position = oldpos;
         }
         
+    }
+
+    void MoveMeBabehhh()
+    {
+        anim.SetBool("run", true);
     }
 }
